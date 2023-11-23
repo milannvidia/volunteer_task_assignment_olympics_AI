@@ -1,0 +1,177 @@
+ public void solveGurobi(instanceReader reader) throws GRBException {
+        GRBModel gurobi=new GRBModel(new GRBEnv());
+        gurobi.set(GRB.IntAttr.ModelSense,GRB.MAXIMIZE);
+
+        int V=volunteers.size();
+        int T=tasks.size();
+
+        //adding variables
+        GRBVar[][] x=new GRBVar[volunteers.size()][tasks.size()];
+        for (int i = 0; i < V; i++) {
+            for (int j = 0; j < T; j++) {
+                x[i][j] = gurobi.addVar(0, 1, 0, GRB.BINARY,"volunteer "+i+" Job "+j);
+            }
+        }
+        GRBVar y= gurobi.addVar(0, Integer.MAX_VALUE, 0,GRB.INTEGER,"difference man and woman");
+
+
+        //1st constraint
+        for (int i = 0; i <V; i++) {
+            GRBLinExpr rowSum=new GRBLinExpr();
+            for (int j = 0; j < T; j++) {
+                rowSum.addTerm(1,x[i][j]);
+            }
+            gurobi.addConstr(rowSum,GRB.LESS_EQUAL,1,"each volunteer zero or one job");
+        }
+
+        //2nd constraint
+        for (int v = 0; v <V; v++) {
+            GRBLinExpr rowSum=new GRBLinExpr();
+            if(!volunteers.get(v).isPresourced){
+                continue;
+            }
+            for (int t = 0; t < T; t++) {
+                rowSum.addTerm(1,x[v][t]);
+            }
+            gurobi.addConstr(rowSum,GRB.EQUAL,1,"each volunteer with priority one job");
+        }
+
+        //3rd constraint
+        for (int t = 0; t <T; t++) {
+            GRBLinExpr rowSum=new GRBLinExpr();
+            for (int v = 0; v < V; v++) {
+                rowSum.addTerm(1,x[v][t]);
+            }
+            gurobi.addConstr(rowSum,GRB.LESS_EQUAL,tasks.get(t).demand,"each job under max demand");
+        }
+        //4th constraint
+        for (int t = 0; t < T; t++) {
+            for (String skill:skills) {
+                SkillRequirement s=tasks.get(t).skillRequirements.get(skill);
+                if(s==null) continue;
+                if(!s.isHard) continue;
+
+                GRBLinExpr somQuilified=new GRBLinExpr();
+                GRBLinExpr somTotaal=new GRBLinExpr();
+
+                for (int v = 0; v < V; v++) {
+                    somTotaal.addTerm(s.proportion,x[v][t]);
+                    if(volunteers.get(v).skills.get(skill)<s.minProficiency)continue;
+                    somQuilified.addTerm(1,x[v][t]);
+                }
+
+                gurobi.addConstr(somQuilified,GRB.GREATER_EQUAL,somTotaal,"each volunteer with priority one job");
+
+            }
+        }
+        //5th constraint
+        //6th constraint
+        //7th constraint
+        GRBLinExpr somMan=new GRBLinExpr();
+        GRBLinExpr somVrouw=new GRBLinExpr();
+        GRBLinExpr somTotaal=new GRBLinExpr();
+        for (int t = 0; t < T; t++) {
+            for (int v = 0; v < V; v++) {
+                somTotaal.addTerm(1,x[v][t]);
+                if(volunteers.get(v).isMale) {
+                    somMan.addTerm(1, x[v][t]);
+                }else{
+                    somVrouw.addTerm(1,x[v][t]);
+                }
+            }
+        }
+        GRBLinExpr lowerlimit=new GRBLinExpr();
+        lowerlimit.multAdd(0.45,somTotaal);
+
+        GRBLinExpr upperlimit=new GRBLinExpr();
+        upperlimit.multAdd(0.55,somTotaal);
+
+        gurobi.addConstr(somMan,GRB.LESS_EQUAL,upperlimit,"less then 55 percent man");
+        gurobi.addConstr(somMan,GRB.GREATER_EQUAL,lowerlimit,"more then 45 percent man");
+
+        GRBLinExpr verschil=new GRBLinExpr();
+        verschil.multAdd(1,somVrouw);
+        verschil.multAdd(-1,somMan);
+        GRBVar tussenstap=gurobi.addVar(-Integer.MIN_VALUE,Integer.MAX_VALUE,0,GRB.INTEGER,"tussenStap y");
+
+        gurobi.addGenConstrAbs(y,tussenstap,"verschil manvrouw");
+
+
+        //constraint on days
+        for (int v = 0; v <V; v++) {
+            for (int t = 0; t < T; t++) {
+                GRBLinExpr daysworkTimesAssigned=new GRBLinExpr();
+                daysworkTimesAssigned.addTerm(tasks.get(t).days,x[v][t]);
+                gurobi.addConstr(daysworkTimesAssigned,GRB.LESS_EQUAL,volunteers.get(v).availableDays,"job needs less days then volunteer available");
+            }
+        }
+        //distance max
+        for (int v = 0; v <V; v++) {
+            for (int t = 0; t < T; t++) {
+                Volunteer volunteer=volunteers.get(v);
+                Task task=tasks.get(t);
+                if(volunteer.preferredLocationIds.contains(task.locationId)) continue;
+                gurobi.addConstr(x[v][t],GRB.EQUAL,0,"if not on preffered location assignment needs to be zero");
+            }
+        }
+        //
+
+        //optimizing function 2
+        GRBLinExpr goal2=new GRBLinExpr();
+        GRBLinExpr goal2_1=new GRBLinExpr();
+        GRBLinExpr goal2_2=new GRBLinExpr();
+        GRBLinExpr goal2_3=new GRBLinExpr();
+
+        for (int v = 0; v < V; v++) {
+            for (int t = 0; t < T; t++) {
+                Location lv=locations.get(volunteers.get(v).locationId);
+                Location lt=locations.get(tasks.get(t).locationId);
+                double distance=distance(lv.lon, lv.lat, lt.lon,lt.lat);
+
+                int geschiktheid=volunteers.get(v).taskTypes.get(
+                        tasks.get(t).taskTypeId
+                );
+                double total=travelDistanceWeight*distance-taskTypeAdequacyWeight*geschiktheid;
+                goal2_1.addTerm(total,x[v][t]);
+            }
+        }
+
+        for (String skill: skills) {
+            for (int t = 0; t < T; t++) {
+                Task task=tasks.get(t);
+                SkillRequirement s=task.skillRequirements.get(skill);
+
+                if(s==null)continue;
+                if(s.isHard) continue;
+
+                for (int v = 0; v < V; v++) {
+                    Volunteer volunteer=volunteers.get(v);
+                    if(volunteer.skills.get(skill)>s.minProficiency)continue;
+                    goal2_2.addTerm(s.weight,x[v][t]);
+                }
+            }
+        }
+        goal2_3.addTerm(genderBalanceWeight,y);
+
+        goal2.multAdd(1,goal2_1);
+        goal2.multAdd(1,goal2_2);
+        goal2.multAdd(1,goal2_3);
+
+
+        gurobi.setObjectiveN(somTotaal,0,1,1,0,0,"first");
+        gurobi.setObjectiveN(goal2,1,0,-1,0,0,"second");
+        gurobi.optimize();
+
+        reader.writeSolution(somTotaal.getValue(),goal2.getValue());
+
+
+        for (int v = 0; v < V; v++) {
+            for (int t = 0; t < T; t++) {
+                int assigned=(int)x[v][t].get(GRB.DoubleAttr.X);
+//                System.out.print(assigned);
+                if(assigned==1){
+                    reader.addAssignment(volunteers.get(v).id,tasks.get(t).id);
+                }
+            }
+        }
+    }
