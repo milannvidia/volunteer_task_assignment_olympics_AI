@@ -26,9 +26,9 @@ public class Main {
 //        writer.write(reader.solution.toString());
 //        writer.close();
 
-        int[] initialSolution=instance.feasibleSolution();
+        instance.feasibleSolution();
 
-        instance.write(reader,initialSolution);
+        instance.write(reader);
 
 
     }

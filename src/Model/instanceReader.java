@@ -76,7 +76,7 @@ public class instanceReader {
 
         //tasks
         JSONArray JSONtasks= objTarget.getJSONArray("tasks");
-        Task[] tasks=new Task[JSONtasks.length()];
+        ArrayList<Task> tasks=new ArrayList<>();
         for (int i = 0; i < JSONtasks.length(); i++) {
             JSONObject x=JSONtasks.getJSONObject(i);
 
@@ -93,9 +93,9 @@ public class instanceReader {
                 ));
 
             }
-            tasks[i]=(new Task(
+            tasks.add(new Task(
                     x.getString("id"),
-                    x.getString("locationId"),
+                    locations.get(x.getString("locationId")),
                     x.getInt("demand"),
                     x.getInt("days"),
                     x.getString("taskTypeId"),
@@ -107,14 +107,14 @@ public class instanceReader {
 
         //volunteers
         JSONArray JSONvolunteers= objTarget.getJSONArray("volunteers");
-        Volunteer[] volunteers=new Volunteer[JSONvolunteers.length()];
+        ArrayList<Volunteer> volunteers=new ArrayList<>(JSONvolunteers.length());
         Boolean presourcing=false;
         for (int i = 0; i < JSONvolunteers.length(); i++) {
 
             JSONObject volunteerJSON= JSONvolunteers.getJSONObject(i);
-            ArrayList<String> prefLoc=new ArrayList<>();
+            ArrayList<Location> prefLoc=new ArrayList<>();
             for (Object y:volunteerJSON.getJSONArray("preferredLocationIds")) {
-                prefLoc.add(y.toString());
+                prefLoc.add(locations.get(y.toString()));
             }
 
             HashMap<String, Integer> volunteerSkills=new HashMap<String, Integer>();
@@ -133,11 +133,11 @@ public class instanceReader {
                 taskSkills.put(key,JSONVolunteerTask.getInt(key));
             }
             if(volunteerJSON.getBoolean("isPresourced")) presourcing=true;
-            volunteers[i]=(new Volunteer(
+            volunteers.add(new Volunteer(
                     volunteerJSON.getString("id"),
                     volunteerJSON.getBoolean("isMale"),
                     volunteerJSON.getBoolean("isPresourced"),
-                    volunteerJSON.getString("locationId"),
+                    locations.get(volunteerJSON.getString("locationId")),
                     prefLoc,
                     volunteerJSON.getInt("availableDays"),
                     volunteerSkills,

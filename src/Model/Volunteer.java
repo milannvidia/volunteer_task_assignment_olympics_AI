@@ -9,17 +9,21 @@ public class Volunteer {
     public String id;
     public boolean isMale;
     public boolean isPresourced;
-    public String locationId;
-    public ArrayList<String> preferredLocationIds;
+    public Location location;
+    public ArrayList<Location> preferredLocationIds;
     public int availableDays;
 
-    public Volunteer(String id, boolean isMale, boolean isPresourced, String locationId, ArrayList<String> prefLoc, int availableDays,
+    public ArrayList<Task> qualifiedTasks=new ArrayList<>();
+
+    public Task assignment=null;
+
+    public Volunteer(String id, boolean isMale, boolean isPresourced, Location location, ArrayList<Location> prefLoc, int availableDays,
                      HashMap<String, Integer> hashSkills, HashMap<String, Integer> taskSkills,
                      ArrayList<String> skills, ArrayList<String> taskTypes) {
         this.id=id;
         this.isMale=isMale;
         this.isPresourced=isPresourced;
-        this.locationId=locationId;
+        this.location =location;
         this.preferredLocationIds=prefLoc;
         this.availableDays=availableDays;
 
@@ -33,4 +37,52 @@ public class Volunteer {
             this.taskTypes[i]=taskSkills.get(taskTypes.get(i));
         }
     }
+
+
+    public void addQualified(Task t) {
+        qualifiedTasks.add(t);
+    }
+    public boolean assignTask(Task t){
+        if(assignment==null){
+            assignment=t;
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean reassign(Task task) {
+        for (Task t: qualifiedTasks) {
+            if(t==task)continue;
+            if(t.addVolunteer(this)){
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+//    public boolean solveProblem(boolean checkSkill) {
+//        for (Task t:qualifiedTasks) {
+//            if(t.solve(this,checkSkill))return true;
+//        }
+//        return false;
+//    }
+
+//    public boolean reassign(Task task, boolean checkSkill) {
+//        for (Task t: qualifiedTasks) {
+//            if(t==task)continue;
+//            if(checkSkill){
+//                if(t.addVolunteer(this)){
+//                    return true;
+//                }
+//            }else{
+//                if(t.addVolunteerNoSkill(this)){
+//                    return true;
+//                }
+//            }
+//
+//        }
+//        return false;
+//    }
 }
