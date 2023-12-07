@@ -51,16 +51,16 @@ public class Volunteer {
         }
     }
 
-    public boolean reassign(Task task) {
-        for (Task t: qualifiedTasks) {
-            if(t==task)continue;
-            if(t.addVolunteer(this)){
-                return true;
-            }
-
-        }
-        return false;
-    }
+//    public boolean reassign(Task task) {
+//        for (Task t: qualifiedTasks) {
+//            if(t==task)continue;
+//            if(t.addVolunteer(this)){
+//                return true;
+//            }
+//
+//        }
+//        return false;
+//    }
 
 //    public boolean solveProblem(boolean checkSkill) {
 //        for (Task t:qualifiedTasks) {

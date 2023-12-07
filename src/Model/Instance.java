@@ -114,319 +114,17 @@ public class Instance {
     }
 
 
-//    private int[] feasibleSolutionPresourcing() {
-//
-//        ArrayList<Integer> presourcedLeft = new ArrayList<>();
-//
-//
-//        for (int v = 0; v < V; v++) {
-//            Volunteer volunteer = volunteers[v];
-//            if (!volunteer.isPresourced) continue;
-//            presourcedLeft.add(v);
-//        }
-//
-//        //first assignment
-//        int amountLeft;
-//        do {
-//            amountLeft = presourcedLeft.size();
-//            volunteer:
-//            for (int v : new ArrayList<>(presourcedLeft)) {
-////                if (!genderCheck(v)) continue;
-//                for (int t = 0; t < T; t++) {
-//                    if (qualified[v][t] != 1) continue;
-//                    if (vol_per_task[t] + 1 > max_volunteers_per_job[t]) continue;
-//                    if (!skillCheck(t, v)) continue;
-//                    addingToArrays(t, v);
-//                    presourcedLeft.remove(Integer.valueOf(v));
-//                    continue volunteer;
-//                }
-//            }
-//        } while (presourcedLeft.size() != amountLeft);
-//
-//        //for each volunteer an arraylist
-//
-//        //1-> fillingsporblems
-//        //2-> skillissues
-//        HashMap<Integer, ArrayList<ArrayList<Integer>>> problems = new HashMap<>();
-//
-//        //now check why not possible
-//        volunteer:
-//        for (int v : presourcedLeft) {
-//            ArrayList<ArrayList<Integer>> problemsVolunteer = new ArrayList<>();
-//
-//            ArrayList<Integer> fullProblem = new ArrayList<>();
-//            ArrayList<Integer> skillIssue = new ArrayList<>();
-//
-//            for (int t = 0; t < T; t++) {
-//                if (qualified[v][t] != 1) continue;
-//                if (vol_per_task[t] + 1 > max_volunteers_per_job[t]) {
-//                    fullProblem.add(t);
-//                }
-//                if (!skillCheck(t, v)) {
-//                    skillIssue.add(t);
-//                }
-//            }
-//            problemsVolunteer.add(0, fullProblem);
-//            problemsVolunteer.add(1, skillIssue);
-//            problems.put(v, problemsVolunteer);
-//        }
-//
-//        //solver
-//        while (!presourcedLeft.isEmpty()) {
-//            amountLeft = presourcedLeft.size();
-//            System.out.printf("%d   %d%n", total, amountLeft);
-//            solver:
-//            for (Integer volunteerIndex : new ArrayList<>(presourcedLeft)) {
-//                ArrayList<ArrayList<Integer>> problemsVolunteer = problems.get(volunteerIndex);
-//                //full and skill
-//                if (!problemsVolunteer.get(0).isEmpty()&&!problemsVolunteer.get(1).isEmpty()) {
-//                    for(Iterator<Integer> it=problemsVolunteer.get(0).iterator(); it.hasNext();){
-//                        int jobIndex=it.next();
-//
-//                        if (!problemsVolunteer.get(1).contains(jobIndex)) continue;
-//
-//                        int[] skillsNotOkay = getSkillCheck(jobIndex, volunteerIndex);
-//                        if (reallocateUnskilled(jobIndex, skillsNotOkay)) {
-//                            boolean saveTOadd=true;
-//                            //cant arise
-//                            if (vol_per_task[jobIndex] + 1 > max_volunteers_per_job[jobIndex]) {
-//                                if (!problemsVolunteer.get(0).contains(jobIndex))
-//                                    problemsVolunteer.get(0).add(jobIndex);
-//                                saveTOadd=false;
-//                            }else{
-//                                it.remove();
-//                            }
-//                            //cant arise
-//                            if (!skillCheck(jobIndex, volunteerIndex)) {
-//                                if (!problemsVolunteer.get(1).contains(jobIndex))
-//                                    problemsVolunteer.get(1).add(jobIndex);
-//                                saveTOadd=false;
-//                            }else{
-//                                problemsVolunteer.get(1).remove(Integer.valueOf(jobIndex));
-//                            }
-//                            if(!saveTOadd)continue;
-//                            addingToArrays(jobIndex, volunteerIndex);
-//                            problems.remove(volunteerIndex);
-//                            presourcedLeft.remove(Integer.valueOf(volunteerIndex));
-//                            continue solver;
-//
-//                        }
-//
-//                    }
-//                }
-//                //only skill
-//                if(!problemsVolunteer.get(1).isEmpty()){
-//                    for(Iterator<Integer> it=problemsVolunteer.get(1).iterator();it.hasNext();){
-//                        int jobIndex=it.next();
-//
-//                        int[] skillsNotOkay = getSkillCheck(jobIndex, volunteerIndex);
-//                        if (AddSkilled(jobIndex, skillsNotOkay)) {
-//                            boolean saveTOadd=true;
-//                            //cant arise
-//                            if (vol_per_task[jobIndex] + 1 > max_volunteers_per_job[jobIndex]) {
-//                                if (!problemsVolunteer.get(0).contains(jobIndex))
-//                                    problemsVolunteer.get(0).add(jobIndex);
-//                                saveTOadd=false;
-//                            }else{
-//                                problemsVolunteer.get(0).remove(Integer.valueOf(jobIndex));
-//                            }
-//                            //cant arise
-//                            if (!skillCheck(jobIndex, volunteerIndex)) {
-//                                if (!problemsVolunteer.get(1).contains(jobIndex))
-//                                    problemsVolunteer.get(1).add(jobIndex);
-//                                saveTOadd=false;
-//                            }else{
-//                                it.remove();
-//                            }
-//                            if(!saveTOadd)continue;
-//                            addingToArrays(jobIndex, volunteerIndex);
-//                            presourcedLeft.remove(Integer.valueOf(volunteerIndex));
-//                            problems.remove(volunteerIndex);
-//                            continue solver;
-//
-//                        }else{
-//                            if (vol_per_task[jobIndex] + 1 > max_volunteers_per_job[jobIndex]) {
-//                                if (!problemsVolunteer.get(0).contains(jobIndex)) problemsVolunteer.get(0).add(jobIndex);
-//                                continue;
-//                            }else{
-//                                System.out.println("cant add someone to cover");
-//                            }
-//                        }
-//
-//                    }
-//
-//                }
-//                //only full problem
-//                if (!problemsVolunteer.get(0).isEmpty()) {
-//                    for(Iterator<Integer> it=problemsVolunteer.get(0).iterator(); it.hasNext();){
-//                        int jobIndex=it.next();
-//                        //skip if also skill issue
-//                        if (problemsVolunteer.get(1).contains(jobIndex)) continue;
-//                        if (freeUpSpace(jobIndex)) {
-//                            boolean saveTOadd=true;
-//                            //cant arise
-//                            if (vol_per_task[jobIndex] + 1 > max_volunteers_per_job[jobIndex]) {
-//                                if (!problemsVolunteer.get(0).contains(jobIndex))
-//                                    problemsVolunteer.get(0).add(jobIndex);
-//                                saveTOadd=false;
-//                            }else{
-//                                it.remove();
-//                            }
-//                            //cant arise
-//                            if (!skillCheck(jobIndex, volunteerIndex)) {
-//                                if (!problemsVolunteer.get(1).contains(jobIndex))
-//                                    problemsVolunteer.get(1).add(jobIndex);
-//                                saveTOadd=false;
-//                            }else{
-//                                problemsVolunteer.get(1).remove(Integer.valueOf(jobIndex));
-//                            }
-//                            if(!saveTOadd)continue;
-//                            addingToArrays(jobIndex, volunteerIndex);
-//                            problems.remove(volunteerIndex);
-//                            presourcedLeft.remove(Integer.valueOf(volunteerIndex));
-//                            continue solver;
-//                        }
-//                    }
-//                }
-//            }
-//
-////            if (amountLeft != presourcedLeft.size()) continue;
-////            for (int i = 0; i < 500; i++) {
-////
-////
-////                volunteer:
-////                for (int v = 0; v < V; v++) {
-////                    if (assignment_matrix[v] != -1) continue;
-////                    for (int t = 0; t < T; t++) {
-////                        if (qualified[v][t] != 1) continue;
-////                        if (vol_per_task[t] + 1 > max_volunteers_per_job[t]) continue;
-////                        if (!skillCheck(t, v)) continue;
-////
-////                        addingToArrays(t, v);
-////                        break volunteer;
-////                    }
-////                }
-////            }
-//        }
-//        while((double)males/total>0.55 ||(double)males/total<0.45){
-//            volunteer:
-//            for (int v = 0; v < V; v++) {
-//                if (!((double) males / total > 0.55) && !((double) males / total < 0.45)) break ;
-//                if(assignment_matrix[v]!=-1)continue;
-//                //gender check
-//                if (!genderCheck(v)) continue;
-//                for (int t = 0; t < T; t++) {
-//                    if (qualified[v][t] != 1) continue;
-//                    if (vol_per_task[t] + 1 > max_volunteers_per_job[t]) continue;
-//                    if (!skillCheck(t, v)) continue;
-//
-//                    addingToArrays(t, v);
-//                    continue volunteer;
-//                }
-//            }
-//            return assignment_matrix;
-//        }
-//
-//        return assignment_matrix;
-//    }
-//
-//    private int[] feasibleSolutionPresourcingV2(){
-//        //sort jobs on peaple who can work there
-//        ArrayList<Integer> jobs=new ArrayList<>(T);
-//        for (int t = 0; t < T; t++) {
-//            jobs.add(t);
-//        }
-//        ArrayList<Integer> presourcedLeft = new ArrayList<>();
-//        for (int v = 0; v < V; v++) {
-//            if (!volunteers[v].isPresourced) continue;
-//            presourcedLeft.add(v);
-//        }
-//        jobs.sort((o1,o2)-> Integer.compare(qual_per_job[o1], qual_per_job[o2]));
-//        presourcedLeft.sort(Comparator.comparingInt(o -> Arrays.stream(qualified[o]).sum()));
-//
-//        int amountLeft;
-//        restart:
-//        do {
-//            amountLeft = presourcedLeft.size();
-//            System.out.println(presourcedLeft.size());
-//            job:
-//            for (Iterator<Integer> itJobs = jobs.iterator(); itJobs.hasNext(); ) {
-//                int t = itJobs.next();
-//                if (t == 0) {
-//                    itJobs.remove();
-//                    continue;
-//                }
-//                if (vol_per_task[t] + 1 > max_volunteers_per_job[t]) {
-//                    itJobs.remove();
-//                    continue;
-//                }
-//                for (Iterator<Integer> it = presourcedLeft.iterator(); it.hasNext(); ) {
-//                    int v = it.next();
-//                    if (qualified[v][t] == 0) {
-//                        continue;
-//                    }
-//                    if (!skillCheck(t, v)) {
-//                        continue;
-//                    }
-//
-//                    addingToArrays(t, v);
-//                    it.remove();
-//                    if (vol_per_task[t] + 1 > max_volunteers_per_job[t]) {
-//                        itJobs.remove();
-//                        continue restart;
-//                    }
-//                    continue;
-//                }
-//            }
-//        } while (presourcedLeft.size()!=amountLeft);
-//
-//        return assignment_matrix;
-//    }
-    private double[] assignArraylistRecursive(ArrayList<Volunteer> presourcedLeft){
-        double males = 0;
-        double total = 0;
+    private boolean assignArraylistRecursiveV2(ArrayList<Volunteer> allPre){
+        ArrayList<Volunteer> presourcedLeft=new ArrayList<>(allPre);
 
-        ArrayList<Volunteer> toAddAfterwards=new ArrayList<>();
-        ArrayList<Volunteer> problems=new ArrayList<>();
-
-        int amounLeft=0;
-        while(amounLeft!=presourcedLeft.size()){
+        int amounLeft = 0;
+        while (amounLeft != presourcedLeft.size()) {
             amounLeft = presourcedLeft.size();
             volunteer:
             for (Iterator<Volunteer> it = presourcedLeft.iterator(); it.hasNext(); ) {
                 Volunteer v = it.next();
                 for (Task t : v.qualifiedTasks) {
-                    if (t.addVolunteer(v)) {
-                        total += 1;
-                        if (v.isMale) males += 1;
-                        it.remove();
-                        toAddAfterwards.add(v);
-                        continue volunteer;
-                    }
-                }
-            }
-        }
-
-        if(presourcedLeft.isEmpty())return new double[]{males, total};
-
-
-        //if fails focus on smaller group
-        problems.addAll(presourcedLeft);
-        for (Task t:tasks) {
-            t.reset();
-        }
-        double[] gender=assignArraylistRecursive(problems);
-
-        amounLeft=0;
-        while(amounLeft!=toAddAfterwards.size()){
-            amounLeft = toAddAfterwards.size();
-            volunteer:
-            for (Iterator<Volunteer> it = toAddAfterwards.iterator(); it.hasNext(); ) {
-                Volunteer v = it.next();
-                for (Task t : v.qualifiedTasks) {
-                    if (t.addVolunteer(v)) {
-                        gender[1] += 1;
-                        if (v.isMale) gender[0] += 1;
+                    if (t.addVolunteerNoSkill(v)) {
                         it.remove();
                         continue volunteer;
                     }
@@ -434,13 +132,88 @@ public class Instance {
             }
         }
 
-        if(toAddAfterwards.isEmpty())return gender;
 
-        System.out.println("hii");
-
-        return gender;
+        return true;
+    }
 
 
+    private double[] assignArraylistRecursive(ArrayList<Volunteer> initVol){
+        boolean repeat=true;
+//        while(repeat) {
+            double males = 0;
+            double total = 0;
+
+            ArrayList<Volunteer> presourcedLeft = new ArrayList<>(initVol);
+            ArrayList<Volunteer> toAddAfterwards = new ArrayList<>();
+            ArrayList<Volunteer> newInit = new ArrayList<>();
+
+            int amounLeft = 0;
+            while (amounLeft != presourcedLeft.size()) {
+                amounLeft = presourcedLeft.size();
+                volunteer:
+                for (Iterator<Volunteer> it = presourcedLeft.iterator(); it.hasNext(); ) {
+                    Volunteer v = it.next();
+                    for (Task t : v.qualifiedTasks) {
+                        if (t.addVolunteer(v)) {
+                            total += 1;
+                            if (v.isMale) males += 1;
+                            toAddAfterwards.add(v);
+                            it.remove();
+                            continue volunteer;
+                        }
+                    }
+                }
+            }
+
+            if (presourcedLeft.isEmpty()) return new double[]{males, total};
+
+
+            //if fails focus on smaller group
+            for (Task t : tasks) {
+                t.reset();
+            }
+            double[] gender = assignArraylistRecursive(presourcedLeft);
+
+            amounLeft = 0;
+            while (amounLeft != toAddAfterwards.size()) {
+                amounLeft = toAddAfterwards.size();
+                volunteer:
+                for (Iterator<Volunteer> it = toAddAfterwards.iterator(); it.hasNext(); ) {
+                    Volunteer v = it.next();
+                    for (Task t : v.qualifiedTasks) {
+                        if (t.addVolunteer(v)) {
+                            gender[1] += 1;
+                            if (v.isMale) gender[0] += 1;
+//                            newInit.add(v);
+                            it.remove();
+                            continue volunteer;
+                        }
+                    }
+                }
+            }
+
+            if (toAddAfterwards.isEmpty()) return gender;
+            else {
+                for (Task t : tasks) {
+                    t.reset();
+                }
+
+//                Collections.shuffle(newInit);
+//                Collections.shuffle(toAddAfterwards);
+//                Collections.shuffle(presourcedLeft);
+
+                newInit.addAll(toAddAfterwards);
+                newInit.addAll(presourcedLeft);
+//                Collections.reverse(newInit);
+                Collections.shuffle(newInit);
+
+                double[] test=assignArraylistRecursive(newInit);
+                System.out.println(test);
+            }
+
+//        }
+
+        return new double[]{0, 0};
 
     }
 
@@ -451,7 +224,7 @@ public class Instance {
             if(v.isPresourced)presourcedLeft.add(v);
         }
 
-        double[] gender=assignArraylistRecursive(presourcedLeft);
+        assignArraylistRecursiveV2(presourcedLeft);
 
         presourcedLeft.clear();
         for(Volunteer v:volunteers){
@@ -460,53 +233,53 @@ public class Instance {
         }
 
         System.out.println(presourcedLeft.size());
-        int amountleft=0;
-        while(presourcedLeft.size()!=amountleft){
-            amountleft=presourcedLeft.size();
-            volunteer:
-            for (Iterator<Volunteer> it=presourcedLeft.iterator(); it.hasNext();){
-                Volunteer v=it.next();
-                for(Task t:v.qualifiedTasks){
-                    if(t.makeSpace(v)){
-                        if(v.isMale)gender[0]++;
-                        gender[1]++;
-                        it.remove();
-                        continue volunteer;
-                    }
-                }
+//        int amountleft=0;
+//        while(presourcedLeft.size()!=amountleft){
+//            amountleft=presourcedLeft.size();
+//            volunteer:
+//            for (Iterator<Volunteer> it=presourcedLeft.iterator(); it.hasNext();){
+//                Volunteer v=it.next();
+//                for(Task t:v.qualifiedTasks){
+//                    if(t.makeSpace(v)){
+//                        if(v.isMale)gender[0]++;
+//                        gender[1]++;
+//                        it.remove();
+//                        continue volunteer;
+//                    }
+//                }
+//
+//            }
+//        }
 
-            }
-        }
-
-        while(gender[0]/gender[1]>0.55){
-            volunteer:
-            for (Volunteer v:volunteers) {
-                if(v.isMale)continue;
-                if(v.isPresourced)continue;
-                if(v.assignment!=null)continue;
-                for (Task t : v.qualifiedTasks) {
-                    if (t.addVolunteer(v)) {
-                        gender[1] += 1;
-                        break volunteer;
-                    }
-                }
-            }
-        }
-        while(gender[0]/gender[1]<0.45){
-            volunteer:
-            for (Volunteer v:volunteers) {
-                if(!v.isMale)continue;
-                if(v.isPresourced)continue;
-                if(v.assignment!=null)continue;
-                for (Task t : v.qualifiedTasks) {
-                    if (t.addVolunteer(v)) {
-                        gender[1] += 1;
-                        gender[0] += 1;
-                        break volunteer;
-                    }
-                }
-            }
-        }
+//        while(gender[0]/gender[1]>0.55){
+//            volunteer:
+//            for (Volunteer v:volunteers) {
+//                if(v.isMale)continue;
+//                if(v.isPresourced)continue;
+//                if(v.assignment!=null)continue;
+//                for (Task t : v.qualifiedTasks) {
+//                    if (t.addVolunteer(v)) {
+//                        gender[1] += 1;
+//                        break volunteer;
+//                    }
+//                }
+//            }
+//        }
+//        while(gender[0]/gender[1]<0.45){
+//            volunteer:
+//            for (Volunteer v:volunteers) {
+//                if(!v.isMale)continue;
+//                if(v.isPresourced)continue;
+//                if(v.assignment!=null)continue;
+//                for (Task t : v.qualifiedTasks) {
+//                    if (t.addVolunteer(v)) {
+//                        gender[1] += 1;
+//                        gender[0] += 1;
+//                        break volunteer;
+//                    }
+//                }
+//            }
+//        }
     }
 
 

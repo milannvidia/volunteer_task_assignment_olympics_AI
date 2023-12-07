@@ -31,15 +31,10 @@ public class Task {
 
     }
 
-    public boolean addVolunteer(Volunteer v,boolean reassign) {
+    public boolean addVolunteer(Volunteer v) {
         if(this.volunteers.size()>=this.demand)return false;
         if(!skillcheck(v))return false;
-        if(!reassign){
-            if(v.assignTask(this)) return false;
-        }{
-
-        }
-
+        if(v.assignment!=null)return false;
 
         this.volunteers.add(v);
         for (int s = 0; s < skillRequirements.length; s++) {
@@ -59,16 +54,6 @@ public class Task {
         if(v.assignTask(this)) return false;
 
         this.volunteers.add(v);
-        for (int s = 0; s < skillRequirements.length; s++) {
-            SkillRequirement skillRequirement = this.skillRequirements[s];
-            if (skillRequirement == null) continue;
-            if (!skillRequirement.isHard) {
-                continue;
-            }
-            if (v.skills[s] >= skillRequirement.minProficiency) {
-                qual_per_skill[s]++;
-            }
-        }
         return true;
     }
 
@@ -106,17 +91,17 @@ public class Task {
         volunteers.clear();
     }
 
-    public boolean makeSpace(Volunteer volunteer) {
-        if(this.volunteers.size()==demand){
-            for (Volunteer v:this.volunteers) {
-                if(v==volunteer)continue;
-                if(v.reassign(this))return true;
-            }
-        }else{
-            return true;
-        }
-        return false;
-    }
+//    public boolean makeSpace(Volunteer volunteer) {
+//        if(this.volunteers.size()==demand){
+//            for (Volunteer v:this.volunteers) {
+//                if(v==volunteer)continue;
+//                if(v.reassign(this))return true;
+//            }
+//        }else{
+//            return true;
+//        }
+//        return false;
+//    }
 
 //    public boolean solve(Volunteer volunteer, boolean checkSkill) {
 //        if(this.volunteers.size()==demand){
