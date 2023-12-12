@@ -19,16 +19,16 @@ public class Main {
 //        instanceReader reader=new instanceReader(new File("problems/p0_200t_5000v.json"));
 //        instanceReader reader=new instanceReader(new File("problems/p2_781t_40000v.json"));
         instanceReader reader=new instanceReader(new File("problems/p4_781t_140765v.json"));
-//        instanceReader reader=new instanceReader(new File("toy_problem.json"));
+//        instanceReader reader=new instanceReader(new File("problems/toy_problem.json"));
         Instance instance= reader.getInstance();
 //        instance.solveGurobi(reader);
 //        BufferedWriter writer = new BufferedWriter(new FileWriter("toy_problem_solution.json"));
 //        writer.write(reader.solution.toString());
 //        writer.close();
 
-        int[] initialSolution=instance.feasibleSolution();
+        instance.feasibleSolution();
 
-        instance.write(reader,initialSolution);
+        instance.write(reader);
 
 
     }

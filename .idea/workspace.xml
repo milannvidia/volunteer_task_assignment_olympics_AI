@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96830e4d-427e-454b-affb-19deb71cd7da" name="Changes" comment="init" />
+    <list default="true" id="96830e4d-427e-454b-affb-19deb71cd7da" name="Changes" comment="7/12">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Instance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Instance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Volunteer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Volunteer.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,14 +24,19 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "milannvidia"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;milannvidia&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -56,8 +67,9 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/milan/OneDrive - KU Leuven/Ma/Optimalisatietechnieken/Solvice",
+    "git-widget-placeholder": "ReferenceBuild",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/milan/Documents/Masterproef",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -65,11 +77,14 @@
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\milan\OneDrive - KU Leuven\Ma\Optimalisatietechnieken\Solvice\src" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\milan\OneDrive - KU Leuven\Ma\Optimalisatietechnieken\Solvice\problems" />
     </key>
@@ -102,7 +117,18 @@
       <workItem from="1700643426064" duration="66000" />
       <workItem from="1700665226655" duration="16007000" />
       <workItem from="1700724167221" duration="16000" />
-      <workItem from="1700724654405" duration="17654000" />
+      <workItem from="1700724654405" duration="19367000" />
+      <workItem from="1701075958027" duration="9325000" />
+      <workItem from="1701088596022" duration="127000" />
+      <workItem from="1701173722786" duration="10000" />
+      <workItem from="1701680151483" duration="10778000" />
+      <workItem from="1701702144502" duration="24000" />
+      <workItem from="1701934035972" duration="9885000" />
+      <workItem from="1702021283277" duration="8000" />
+      <workItem from="1702289055627" duration="18607000" />
+      <workItem from="1702383217010" duration="1235000" />
+      <workItem from="1702400134022" duration="150000" />
+      <workItem from="1702400294872" duration="344000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -128,7 +154,31 @@
       <option name="project" value="LOCAL" />
       <updated>1700746980688</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="init">
+      <option name="closed" value="true" />
+      <created>1700747124400</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1700747124400</updated>
+    </task>
+    <task id="LOCAL-00005" summary="4/11">
+      <option name="closed" value="true" />
+      <created>1701690243834</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1701690243834</updated>
+    </task>
+    <task id="LOCAL-00006" summary="7/12">
+      <option name="closed" value="true" />
+      <created>1701942442850</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1701942442850</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,7 +189,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -147,38 +209,45 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
-    <option name="LAST_COMMIT_MESSAGE" value="init" />
+    <MESSAGE value="4/11" />
+    <MESSAGE value="7/12" />
+    <option name="LAST_COMMIT_MESSAGE" value="7/12" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Model/Instance.java</url>
-          <line>527</line>
-          <option name="timeStamp" value="119" />
+          <line>99</line>
+          <option name="timeStamp" value="294" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Model/Instance.java</url>
-          <line>372</line>
-          <option name="timeStamp" value="121" />
+          <line>161</line>
+          <option name="timeStamp" value="297" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Model/Instance.java</url>
-          <line>316</line>
-          <option name="timeStamp" value="185" />
+          <line>162</line>
+          <option name="timeStamp" value="298" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Model/Instance.java</url>
-          <line>298</line>
-          <option name="timeStamp" value="211" />
+          <line>92</line>
+          <option name="timeStamp" value="303" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Model/Instance.java</url>
+          <line>82</line>
+          <option name="timeStamp" value="309" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="Arrays.stream(qualified[11949]).sum()" language="JAVA" />
-        <watch expression="Arrays.stream(qualified[2616]).sum()" language="JAVA" />
-      </configuration>
-    </watches-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="Model.Task" memberName="qualPerSkill" />
+        <PinnedItemInfo parentTag="Model.Task" memberName="skillRequirements" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>
