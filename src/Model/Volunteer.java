@@ -12,7 +12,6 @@ public class Volunteer {
     public Location location;
     public ArrayList<Location> preferredLocationIds;
     public int availableDays;
-
     public ArrayList<Task> qualifiedTasks=new ArrayList<>();
 
     public Task assignment=null;
@@ -41,6 +40,7 @@ public class Volunteer {
 
     public void addQualified(Task t) {
         qualifiedTasks.add(t);
+        t.sortVolunteer(this);
     }
     public boolean assignTask(Task t){
         if(assignment==null){
@@ -51,38 +51,10 @@ public class Volunteer {
         }
     }
 
-//    public boolean reassign(Task task) {
-//        for (Task t: qualifiedTasks) {
-//            if(t==task)continue;
-//            if(t.addVolunteer(this)){
-//                return true;
-//            }
-//
-//        }
-//        return false;
-//    }
-
-//    public boolean solveProblem(boolean checkSkill) {
-//        for (Task t:qualifiedTasks) {
-//            if(t.solve(this,checkSkill))return true;
-//        }
-//        return false;
-//    }
-
-//    public boolean reassign(Task task, boolean checkSkill) {
-//        for (Task t: qualifiedTasks) {
-//            if(t==task)continue;
-//            if(checkSkill){
-//                if(t.addVolunteer(this)){
-//                    return true;
-//                }
-//            }else{
-//                if(t.addVolunteerNoSkill(this)){
-//                    return true;
-//                }
-//            }
-//
-//        }
-//        return false;
-//    }
+    public void sortTasks() {
+        qualifiedTasks.sort((Task o1,Task o2)-> o2.scoreVolunteer(this)-o1.scoreVolunteer(this));
+        for (Task t:qualifiedTasks) {
+            t.sortVolunteer(this);
+        }
+    }
 }
