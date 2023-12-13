@@ -88,27 +88,30 @@ public class Instance {
     }
 
     private void feasibleSolutionNoPresourcing() {
+        double oldTotal=Integer.MAX_VALUE;
         double males = 0;
         double total = 0;
-
-        volunteer:
-        for (Volunteer v : volunteers) {
-            if (total > 20) {
-                if (v.isMale) {
-                    if (((males + 1) / (total + 1)) > 0.55) {
-                        continue;
-                    }
-                } else {
-                    if ((males / (total + 1)) < 0.45) {
-                        continue;
+        while(oldTotal!=total) {
+            oldTotal=total;
+            volunteer:
+            for (Volunteer v : volunteers) {
+                if (total > 20) {
+                    if (v.isMale) {
+                        if (((males + 1) / (total + 1)) > 0.55) {
+                            continue;
+                        }
+                    } else {
+                        if ((males / (total + 1)) < 0.45) {
+                            continue;
+                        }
                     }
                 }
-            }
-            for (Task t : v.qualifiedTasks) {
-                if (t.addVolunteer(v, true)) {
-                    total += 1;
-                    if (v.isMale) males += 1;
-                    continue volunteer;
+                for (Task t : v.qualifiedTasks) {
+                    if (t.addVolunteer(v, true)) {
+                        total += 1;
+                        if (v.isMale) males += 1;
+                        continue volunteer;
+                    }
                 }
             }
         }
@@ -212,12 +215,37 @@ public class Instance {
         }
         double males=0;
         double total=0;
-        for(Volunteer v:volunteers){
-            if(v.assignment==null)continue;
-            if(v.isMale)males++;
+        for(Volunteer v:volunteers) {
+            if (v.assignment == null) continue;
+            if (v.isMale) males++;
             total++;
         }
         while(males/total>0.55||males/total<0.45){
+            volunteer:
+            for (Volunteer v : volunteers) {
+                if(v.assignment!=null)continue;
+                if (v.isMale) {
+                    if (((males + 1) / (total + 1)) > 0.55) {
+                        continue;
+                    }
+                } else {
+                    if ((males / (total + 1)) < 0.45) {
+                        continue;
+                    }
+                }
+
+                for (Task t : v.qualifiedTasks) {
+                    if (t.addVolunteer(v, true)) {
+                        total += 1;
+                        if (v.isMale) males += 1;
+                        continue volunteer;
+                    }
+                }
+            }
+        }
+        double totalold=0;
+        while(totalold!=total){
+            totalold=total;
             volunteer:
             for (Volunteer v : volunteers) {
                 if(v.assignment!=null)continue;
@@ -306,11 +334,8 @@ public class Instance {
         return true;
     }
 
-    public int optFunction0() {
-        return 0;
-    }
 
-    public int optFunction1() {
+    public int[] optFunction() {
         int score = 0;
         int total = 0;
         int man = 0;
@@ -335,14 +360,13 @@ public class Instance {
         score += (int) (genderBalanceWeight * Math.abs(total - 2 * man));
 
 
-        return score;
+        return new int[]{total, score};
     }
 
 
     public void write(instanceReader reader) throws IOException {
-        int total = optFunction0();
-        int score = optFunction1();
-        reader.startSolution(total, score);
+        int[] scores = optFunction();
+        reader.startSolution(scores[0], scores[1]);
         for (Task t : tasks) {
             for (Volunteer v : t.volunteers) {
                 reader.addAssignment(v.id, t.id);

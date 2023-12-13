@@ -19,9 +19,9 @@ public class Main {
 //         reader=new instanceReader("problems/i3_781t_100000v.json","solutionCheck/solution.json",true);
 //         reader=new instanceReader("problems/i4_781t_140765v.json","solutionCheck/solution.json",true);
 //         reader=new instanceReader("problems/p0_200t_5000v.json","solutionCheck/solution.json",true);
-         reader=new instanceReader("problems/p2_781t_40000v.json","solutionCheck/solution.json",true);
-//            reader = new instanceReader("problems/p4_781t_140765v.json", "solutionCheck/solution.json",true);
-//        instanceReader reader=new instanceReader("problems/toy_problem.json","solutionCheck/solution.json");
+//         reader=new instanceReader("problems/p2_781t_40000v.json","solutionCheck/solution.json",true);
+         reader = new instanceReader("problems/p4_781t_140765v.json", "solutionCheck/solution.json",true);
+//         instanceReader reader=new instanceReader("problems/toy_problem.json","solutionCheck/solution.json");
         }else
         {
             reader = new instanceReader(args[0], args[1],false);

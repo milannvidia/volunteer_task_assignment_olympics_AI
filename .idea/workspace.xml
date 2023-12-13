@@ -9,14 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96830e4d-427e-454b-affb-19deb71cd7da" name="Changes" comment="12/12">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Solvice_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+    <list default="true" id="96830e4d-427e-454b-affb-19deb71cd7da" name="Changes" comment="13/12">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Instance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Instance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/instanceReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/instanceReader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,34 +60,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "JAR Application.Solvice.jar.executor": "Run",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/milan/Documents/Masterproef",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.07401925",
-    "project.structure.side.proportion": "0.4734561",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JAR Application.Solvice.jar.executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/milan/Documents/Masterproef&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.07401925&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.4734561&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\milan\OneDrive - KU Leuven\Ma\Optimalisatietechnieken\Solvice\src" />
@@ -161,7 +157,8 @@
       <workItem from="1702400294872" duration="344000" />
       <workItem from="1702400653882" duration="794000" />
       <workItem from="1702458271274" duration="1175000" />
-      <workItem from="1702459948999" duration="8117000" />
+      <workItem from="1702459948999" duration="8229000" />
+      <workItem from="1702475326905" duration="1859000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -219,7 +216,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702400683053</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="13/12">
+      <option name="closed" value="true" />
+      <created>1702475136829</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1702475136829</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -278,24 +283,25 @@
     <MESSAGE value="4/11" />
     <MESSAGE value="7/12" />
     <MESSAGE value="12/12" />
-    <option name="LAST_COMMIT_MESSAGE" value="12/12" />
+    <MESSAGE value="13/12" />
+    <option name="LAST_COMMIT_MESSAGE" value="13/12" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Model/Instance.java</url>
-          <line>173</line>
+          <line>176</line>
           <option name="timeStamp" value="212" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Model/Instance.java</url>
-          <line>243</line>
+          <line>271</line>
           <option name="timeStamp" value="232" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Model/Instance.java</url>
-          <line>219</line>
+          <line>222</line>
           <option name="timeStamp" value="233" />
         </line-breakpoint>
       </breakpoints>
@@ -308,7 +314,7 @@
     </pin-to-top-manager>
     <watches-manager>
       <configuration name="Application">
-        <watch expression="males/total" language="JAVA" />
+        <watch expression="(double)males/total" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
