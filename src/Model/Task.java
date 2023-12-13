@@ -80,6 +80,12 @@ public class Task {
         return true;
     }
 
+    public boolean skillcheckV2(Volunteer V){
+
+
+        return false;
+    }
+
     public boolean skillcheck(boolean print) {
         if(volunteers.isEmpty())return true;
         for(int s=0;s<skillRequirements.length;s++){
@@ -154,11 +160,12 @@ public class Task {
         int index=-1;
         int score=Integer.MAX_VALUE;
         //first check for all volunteers that need two or more skills because demand too low
+
         //todo
-        //check for the skill with least possible but skip the jobs which are filled
+        //check for the skill with least possible but skip the skills which are filled
         for (int i = 0; i < qualPerSkill.length; i++) {
             if(qualPerSkill[i]==null)continue;
-            int needed=(int)Math.ceil(skillRequirements[i].proportion*this.demand);
+            int needed=neededPerSkill[i];
             needed-=qual_per_skill_assigned[i];
             if(needed<=0)continue;
 
@@ -169,9 +176,9 @@ public class Task {
         }
 
         if(index<0) {
-            return true;
+            return false;
         }
-        int needed=(int)Math.ceil(skillRequirements[index].proportion*this.demand);
+        int needed=neededPerSkill[index];
         needed-=qual_per_skill_assigned[index];
 
         qualPerSkill[index].sort(Comparator.comparingInt((Volunteer a)->-1*this.scoreVolunteer(a)));
@@ -185,28 +192,4 @@ public class Task {
 
         return false;
     }
-
-
-
-//    public boolean makeSpace(Volunteer volunteer) {
-//        if(this.volunteers.size()==demand){
-//            for (Volunteer v:this.volunteers) {
-//                if(v==volunteer)continue;
-//                if(v.reassign(this))return true;
-//            }
-//        }else{
-//            return true;
-//        }
-//        return false;
-//    }
-
-//    public boolean solve(Volunteer volunteer, boolean checkSkill) {
-//        if(this.volunteers.size()==demand){
-//            for (Volunteer v:this.volunteers) {
-//                if(v==volunteer)continue;
-//                if(v.reassign(this,checkSkill))return true;
-//            }
-//        }
-//        return false;
-//    }
 }

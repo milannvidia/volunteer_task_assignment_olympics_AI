@@ -12,9 +12,13 @@ import java.util.*;
 public class instanceReader {
 
     private File instance;
+    private String outputPath;
+    private boolean writeproblem;
 
-    public instanceReader(File file) {
-        instance = file;
+    public instanceReader(String input, String output,boolean writeproblem) {
+        instance = new File(input);
+        outputPath=output;
+        this.writeproblem=writeproblem;
     }
     public JSONObject solution;
 
@@ -44,7 +48,7 @@ public class instanceReader {
 
     public Instance getInstance() throws IOException {
         String JsonString= Files.readString(instance.toPath());
-        makeProblem(JsonString);
+        if(writeproblem) makeProblem(JsonString);
 
         JSONObject objTarget= new JSONObject(JsonString);
         JSONObject weights=objTarget.getJSONObject("weights");

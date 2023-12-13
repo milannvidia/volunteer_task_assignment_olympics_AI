@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Solvice:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96830e4d-427e-454b-affb-19deb71cd7da" name="Changes" comment="7/12">
+    <list default="true" id="96830e4d-427e-454b-affb-19deb71cd7da" name="Changes" comment="12/12">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Solvice_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Instance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Instance.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Volunteer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Volunteer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/instanceReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/instanceReader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +33,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="ReferenceBuild" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -59,7 +66,9 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
+    "JAR Application.Solvice.jar.executor": "Run",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
@@ -67,16 +76,18 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "ReferenceBuild",
+    "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/milan/Documents/Masterproef",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.07401925",
+    "project.structure.side.proportion": "0.4734561",
     "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
@@ -89,7 +100,7 @@
       <recent name="C:\Users\milan\OneDrive - KU Leuven\Ma\Optimalisatietechnieken\Solvice\problems" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Solvice" />
@@ -97,11 +108,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Solvice.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/Solvice_jar/Solvice.jar" />
+      <option name="PROGRAM_PARAMETERS" value="problems/i0_200t_5000v solutionCheck/solution.json" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JAR Application.Solvice.jar" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="JAR Application.Solvice.jar" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.1-openjdk-21.0.1-3183f394aec4-7d648f2c" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -129,6 +159,9 @@
       <workItem from="1702383217010" duration="1235000" />
       <workItem from="1702400134022" duration="150000" />
       <workItem from="1702400294872" duration="344000" />
+      <workItem from="1702400653882" duration="794000" />
+      <workItem from="1702458271274" duration="1175000" />
+      <workItem from="1702459948999" duration="8117000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -178,13 +211,46 @@
       <option name="project" value="LOCAL" />
       <updated>1701942442850</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="12/12">
+      <option name="closed" value="true" />
+      <created>1702400683053</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1702400683053</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/master" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="master" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -195,7 +261,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/master" />
+                        <option value="master" />
                       </list>
                     </value>
                   </entry>
@@ -211,35 +277,26 @@
     <MESSAGE value="init" />
     <MESSAGE value="4/11" />
     <MESSAGE value="7/12" />
-    <option name="LAST_COMMIT_MESSAGE" value="7/12" />
+    <MESSAGE value="12/12" />
+    <option name="LAST_COMMIT_MESSAGE" value="12/12" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Model/Instance.java</url>
-          <line>99</line>
-          <option name="timeStamp" value="294" />
+          <line>173</line>
+          <option name="timeStamp" value="212" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Model/Instance.java</url>
-          <line>161</line>
-          <option name="timeStamp" value="297" />
+          <line>243</line>
+          <option name="timeStamp" value="232" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Model/Instance.java</url>
-          <line>162</line>
-          <option name="timeStamp" value="298" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Model/Instance.java</url>
-          <line>92</line>
-          <option name="timeStamp" value="303" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Model/Instance.java</url>
-          <line>82</line>
-          <option name="timeStamp" value="309" />
+          <line>219</line>
+          <option name="timeStamp" value="233" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -249,5 +306,10 @@
         <PinnedItemInfo parentTag="Model.Task" memberName="skillRequirements" />
       </pinned-members>
     </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="males/total" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

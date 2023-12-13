@@ -11,23 +11,25 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-//        instanceReader reader=new instanceReader(new File("problems/i0_200t_5000v.json"));
-//        instanceReader reader=new instanceReader(new File("problems/i1_600t_40000v.json"));
-//        instanceReader reader=new instanceReader(new File("problems/i2_781t_40000v.json"));
-//        instanceReader reader=new instanceReader(new File("problems/i3_781t_100000v.json"));
-//        instanceReader reader=new instanceReader(new File("problems/i4_781t_140765v.json"));
-//        instanceReader reader=new instanceReader(new File("problems/p0_200t_5000v.json"));
-//        instanceReader reader=new instanceReader(new File("problems/p2_781t_40000v.json"));
-        instanceReader reader=new instanceReader(new File("problems/p4_781t_140765v.json"));
-//        instanceReader reader=new instanceReader(new File("problems/toy_problem.json"));
-        Instance instance= reader.getInstance();
-//        instance.solveGurobi(reader);
-//        BufferedWriter writer = new BufferedWriter(new FileWriter("toy_problem_solution.json"));
-//        writer.write(reader.solution.toString());
-//        writer.close();
+        instanceReader reader;
+        if (args.length == 0) {
+//         reader=new instanceReader("problems/i0_200t_5000v.json","solutionCheck/solution.json",true);
+//         reader=new instanceReader("problems/i1_600t_40000v.json","solutionCheck/solution.json",true);
+//         reader=new instanceReader("problems/i2_781t_40000v.json","solutionCheck/solution.json",true);
+//         reader=new instanceReader("problems/i3_781t_100000v.json","solutionCheck/solution.json",true);
+//         reader=new instanceReader("problems/i4_781t_140765v.json","solutionCheck/solution.json",true);
+//         reader=new instanceReader("problems/p0_200t_5000v.json","solutionCheck/solution.json",true);
+         reader=new instanceReader("problems/p2_781t_40000v.json","solutionCheck/solution.json",true);
+//            reader = new instanceReader("problems/p4_781t_140765v.json", "solutionCheck/solution.json",true);
+//        instanceReader reader=new instanceReader("problems/toy_problem.json","solutionCheck/solution.json");
+        }else
+        {
+            reader = new instanceReader(args[0], args[1],false);
+        }
 
+
+        Instance instance = reader.getInstance();
         instance.feasibleSolution();
-
         instance.write(reader);
 
 
