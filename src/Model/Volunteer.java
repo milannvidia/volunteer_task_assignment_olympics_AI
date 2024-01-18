@@ -13,7 +13,6 @@ public class Volunteer {
     public ArrayList<Location> preferredLocationIds;
     public int availableDays;
     public ArrayList<Task> qualifiedTasks=new ArrayList<>();
-
     public Task assignment=null;
 
     public Volunteer(String id, boolean isMale, boolean isPresourced, Location location, ArrayList<Location> prefLoc, int availableDays,

@@ -289,14 +289,14 @@ public class Instance {
 
     public void feasibleSolution() {
         if (presourcing) {
-            System.out.println("Problem has presourced volunteers");
+//            System.out.println("Problem has presourced volunteers");
             feasibleSolutionPresourcing();
         } else {
-            System.out.println("Problem has no presourced volunteers");
+//            System.out.println("Problem has no presourced volunteers");
             feasibleSolutionNoPresourcing();
         }
         if (isValid(true)) {
-            System.out.println("klopt");
+//            System.out.println("klopt");
         }
 
     }

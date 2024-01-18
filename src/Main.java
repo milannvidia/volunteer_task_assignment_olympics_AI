@@ -13,24 +13,31 @@ public class Main {
 
         instanceReader reader;
         if (args.length == 0) {
-//         reader=new instanceReader("problems/i0_200t_5000v.json","solutionCheck/solution.json",true);
-//         reader=new instanceReader("problems/i1_600t_40000v.json","solutionCheck/solution.json",true);
-//         reader=new instanceReader("problems/i2_781t_40000v.json","solutionCheck/solution.json",true);
-//         reader=new instanceReader("problems/i3_781t_100000v.json","solutionCheck/solution.json",true);
-//         reader=new instanceReader("problems/i4_781t_140765v.json","solutionCheck/solution.json",true);
-//         reader=new instanceReader("problems/p0_200t_5000v.json","solutionCheck/solution.json",true);
-//         reader=new instanceReader("problems/p2_781t_40000v.json","solutionCheck/solution.json",true);
-         reader = new instanceReader("problems/p4_781t_140765v.json", "solutionCheck/solution.json",true);
-//         instanceReader reader=new instanceReader("problems/toy_problem.json","solutionCheck/solution.json");
+            String[] inputs={
+                    "i0_200t_5000v","i1_600t_40000v",
+                    "i2_781t_40000v","i3_781t_100000v",
+                    "i4_781t_140765v","p0_200t_5000v",
+                    "p2_781t_40000v","p4_781t_140765v"};
+            for (String input:inputs){
+                reader=new instanceReader("problems/"+input+".json","solutionCheck/solution.json",false);
+                Instance instance = reader.getInstance();
+                Long t0=System.currentTimeMillis();
+                instance.feasibleSolution();
+
+                System.out.println(input+" "+(System.currentTimeMillis()-t0)+" "+instance.optFunction()[0]);
+                instance.write(reader);
+            }
         }else
         {
             reader = new instanceReader(args[0], args[1],false);
+            Instance instance = reader.getInstance();
+            instance.feasibleSolution();
+            instance.write(reader);
         }
 
 
-        Instance instance = reader.getInstance();
-        instance.feasibleSolution();
-        instance.write(reader);
+
+
 
 
     }

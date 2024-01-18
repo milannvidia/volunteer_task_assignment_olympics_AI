@@ -36,11 +36,13 @@ public class instanceReader {
         solution.getJSONArray("assignments").put(assignment);
     }
     public void writeSolution() throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter("solutionCheck/solution.json"));
+        if(!writeproblem)return;
+        BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath));
         writer.write(solution.toString());
         writer.close();
     }
     public void makeProblem(String problem) throws IOException {
+        if(!writeproblem)return;
         BufferedWriter writer = new BufferedWriter(new FileWriter("solutionCheck/problem.json"));
         writer.write(problem);
         writer.close();
@@ -48,7 +50,7 @@ public class instanceReader {
 
     public Instance getInstance() throws IOException {
         String JsonString= Files.readString(instance.toPath());
-        if(writeproblem) makeProblem(JsonString);
+        makeProblem(JsonString);
 
         JSONObject objTarget= new JSONObject(JsonString);
         JSONObject weights=objTarget.getJSONObject("weights");
